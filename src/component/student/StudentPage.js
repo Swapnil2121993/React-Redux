@@ -25,14 +25,13 @@ class StudentPage extends Component{
 		this.setState({[e.target.name]:e.target.value});
 	}
 
-	onSubmit(e){
+	onSubmit(e) {
 		e.preventDefault();
-		// this.props.dispatch(studentAction.sendData(this.state));
+		this.props.dispatch(studentAction.sendData(this.state));
 		// this.setState({students:this.state.students.push({studentId:this.state.studentId,firstName:this.state.firstName,lastName:this.state.lastName,courses:this.state.courses})});
 		console.log('here 1', this.state);
-		this.props.dispatch(studentAction.addData(this.state));
-
-		}
+		// this.props.dispatch(studentAction.addData(this.state));
+	}
 
 	onClick(e){
 		e.preventDefault();

@@ -12,7 +12,8 @@ import {table} from 'react-bootstrap';
  	constructor(props){
 		super(props);
 		this.state={
-			filterText:''
+			filterText:'',
+			filteredRecords: [],
 		};
 		
 	}
@@ -24,9 +25,6 @@ import {table} from 'react-bootstrap';
  	static defaultProps = {
  		students: [],
  	};
-
- 	
-
 
  	onClick(e){
  		e.preventDefault();
@@ -55,19 +53,29 @@ import {table} from 'react-bootstrap';
  	onClickFilter(e) {
  		e.preventDefault();
 		const filterText = this.state.filterText;
- 		console.log(filterText);
  		const filteredRecords = filter(this.props.students, function(student) {
- 			console.log(student.courses);
- 			console.log(filterText);
- 			console.log(student.courses === filterText);
- 			console.log(student);
  			return student.courses === filterText ?student : '';
  		});
- 		console.log(this.studentInfo);
- 		filteredRecords.map(this.studentInfo);
+ 		this.setState({filteredRecords});
+ 		
  	}
 
- 	render(){
+ 	render() {
+ 		console.log(this.state);
+ 		const {
+ 			students,
+ 		} = this.props;
+
+ 		const {
+ 			filteredRecords
+ 		} = this.state;
+
+ 		let records = students;
+
+ 		if (filteredRecords.length > 0 ) {
+ 			records = filteredRecords;
+ 		}
+
 		return (
 		 		<div>
 		 			<div>
@@ -87,7 +95,18 @@ import {table} from 'react-bootstrap';
 	 					<th>FirstName</th>
 	 					<th>LastName</th>
 	 					<th>Courses</th>
-			 			{this.props.students.map(this.studentInfo)}
+			 			<tbody>
+ 							{records.map((record) => {
+ 								return (
+	 								<tr>
+	 									<td>{record.studentId}</td>
+	 						    		<td>{record.firstName}</td>
+	 						 			<td>{record.lastName}</td>
+	 						 			<td key={record.courses}>{record.courses}</td>
+		 						 	</tr>
+ 								);
+ 							})}
+ 					</tbody>
 			 		</table>
 			 		<div className="form-group">
 	    				<button onClick={this.onClick.bind(this)}>Add new Record</button>
