@@ -29,7 +29,6 @@ class StudentPage extends Component{
 		e.preventDefault();
 		this.props.dispatch(studentAction.sendData(this.state));
 		// this.setState({students:this.state.students.push({studentId:this.state.studentId,firstName:this.state.firstName,lastName:this.state.lastName,courses:this.state.courses})});
-		console.log('here 1', this.state);
 		// this.props.dispatch(studentAction.addData(this.state));
 	}
 
