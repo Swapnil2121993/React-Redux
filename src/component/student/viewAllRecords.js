@@ -4,7 +4,6 @@ import filter from 'lodash/filter';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {table} from 'react-bootstrap';
-import {Modal} from 'react-bootstrap';
 
 
  class viewAllRecords extends Component{
