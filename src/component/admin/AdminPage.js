@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Form,Col,ControlLabel,} from 'react-bootstrap';
+import {Form,Col,ControlLabel} from 'react-bootstrap';
 
 
 class AdminPage extends Component{
@@ -8,33 +8,46 @@ class AdminPage extends Component{
 			this.state={
 				username:"swapnil",
 				password:"trivedi",
+				errors:{},
+				isLoading:false
 			
 			};
 
-			
+			this.onSubmit=this.onSubmit.bind(this);
+			this.onChange=this.onChange.bind(this);
 		}
 
 		onChange(e){
 			this.setState({[e.target.name]:e.target.value});
 		}
 
+		
+
 		onSubmit(e){
 			e.preventDefault();
-			console.log("successful");
-		}
+
+			}
 
 	render(){
+
+			
 		return(
-			<form onSubmit={this.onSubmit.bind(this)}>
+			<form onSubmit={this.onSubmit}>
 			
 			<div className="form-group">
 			<label className="control-label">UserName </label>
-			<input type="text" name="username" className="form-control" onChange={this.onChange.bind(this)} value={this.state.username}/>
+			<input type="text" 
+			name="userName" 
+			onChange={this.onChange.bind(this)} 
+			value={this.state.username}/>
 			</div>
 
 			<div className="form-group">
 			<label className="control-label">Password </label>
-			<input type="password" name="password" className="form-control" onChange={this.onChange.bind(this)} value={this.state.password}/>
+			<input type="password" 
+			 name="password" 
+			 onChange={this.onChange} 
+			 value={this.state.password}/>
 			</div>
 
 			<div className="form-group">

@@ -1,23 +1,25 @@
 import React, {Component,PropTypes} from 'react';
-import {Form,Col,ControlLabel,} from 'react-bootstrap';
+import {Form,Col,ControLabel,} from 'react-bootstrap';
 import {connect} from 'react-redux';
+import {browserHistory} from 'react-router';
 import * as studentAction from '../../actions/studentAction';
 
+class StudentPage extends Component{	
 
-class StudentPage extends Component{
-	
 	constructor(props){
 		super(props);
 		this.state={
-			studentId:"",
-			firstName: "",
-			lastName:"",
-			courses:"",
+			students:[],
+			studentId:"1",
+			firstName: "swapnil",
+			lastName:"trivedi",
+			courses:"Artificial Intelligence",
 		};
 		this.onSubmit=this.onSubmit.bind(this);
 		this.onChange=this.onChange.bind(this);
+		this.onClick=this.onClick.bind(this);
+		this.handleClick=this.handleClick.bind(this);
 	}
-
 
 	onChange(e){
 		this.setState({[e.target.name]:e.target.value});
@@ -25,25 +27,40 @@ class StudentPage extends Component{
 
 	onSubmit(e){
 		e.preventDefault();
+		// this.props.dispatch(studentAction.sendData(this.state));
+		// this.setState({students:this.state.students.push({studentId:this.state.studentId,firstName:this.state.firstName,lastName:this.state.lastName,courses:this.state.courses})});
+		console.log('here 1', this.state);
+		this.props.dispatch(studentAction.addData(this.state));
 
-		this.props.dispatch(studentAction.sendData(this.state));
 		}
 
+	onClick(e){
+		e.preventDefault();
+		browserHistory.push(`record/?studentId=${this.state.studentId}`);
 
-	studentRow(student,id){
-		return 	(	<div>
-					<li>{student.studentId}</li>
-					<li>{student.firstName}</li>
-					<li>{student.lastName}</li>
-					<li key={id}>{student.courses}</li>
+	}
+
+	handleClick(e){
+		e.preventDefault();
+		browserHistory.push("allrecords");
+	}
+
+
+	studentRow(student){
+		return 	(	
+				<div>
+					<li key={student.studentId}>{student.studentId}</li>
+					<li key={student.firstName}>{student.firstName}</li>
+					<li key={student.lastName}>{student.lastName}</li>
+					<li key={student.courses}>{student.courses}</li>
 					
-					</div>
-				);
+				</div>
+			);
 		}
 
-	render(){
+	render() {
 		
-		return(                                                                                                                                                                                                                                                                                                                
+		return(                     	                                                                                                                                                                                                                                                                                           
 			
 				<div>
 					<form onSubmit={this.onSubmit}>
@@ -90,14 +107,17 @@ class StudentPage extends Component{
     		<button className="btn btn-primary btn-lg">Submit</button>
     		</div>
 
+    		<div className="form-group">
+    		<button onClick={this.onClick}>View Record</button>
+    		</div>
 
-    		
-    		{this.props.student.map(this.studentRow)}
-    		
+    		<div className="form-group">
+    		<button onClick={this.handleClick}>View all Records</button>
+    		</div>
 
+    			 {this.props.student.map(this.studentRow)}
 
-			</form>
-	
+			</form>	
 			</div>
 		);
 	}
@@ -106,6 +126,11 @@ class StudentPage extends Component{
 StudentPage.propTypes={
 	dispatch:React.PropTypes.func.isRequired,
 	student:React.PropTypes.array.isRequired
+};
+
+StudentPage.defaultProps ={
+	dispatch: () => {},
+	student: [],
 };
 
 function mapStateToProps(state,props){
