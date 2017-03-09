@@ -83,36 +83,34 @@ class StudentPage extends Component{
 
 				<div className="form-group">
 					<label className="control-label">Last Name </label>
-					<input type="text" 
-					name="lastName" 
-					className="form-control" 
-					value={this.state.lastName}
-					onChange={this.onChange}/>
+						<input type="text" 
+						name="lastName" 
+						className="form-control" 
+						value={this.state.lastName}
+						onChange={this.onChange}/>
 				</div>
 
 				<div className="form-group">
-					<label className="control-label">Courses</label>
-					<select className="form-control"name="courses" onChange={this.onChange}value={this.state.courses} >
-      					<option value="Algorithm Concept">Algorithm Concept</option>
-      					<option value="Java Networking">Java Networking</option>
-      					<option value="Distributed System">Distributed System</option>
-      					<option value="Artificial Intelligence">Artificial Intelligence</option>
-      					<option value="Operating System Security">Operating System Security</option>
-    				</select>	
+						<label className="control-label">Courses</label>
+							<select className="form-control"name="courses" onChange={this.onChange}value={this.state.courses} >
+		      					<option value="Algorithm Concept">Algorithm Concept</option>
+		      					<option value="Java Networking">Java Networking</option>
+		      					<option value="Distributed System">Distributed System</option>
+		      					<option value="Artificial Intelligence">Artificial Intelligence</option>
+		      					<option value="Operating System Security">Operating System Security</option>
+		    				</select>	
 
     			</div>		
 	
-    		<div className="form-group">
-    		<button className="btn btn-primary btn-lg">Submit</button>
-    		</div>
+			    		<div className="form-group">
+			    		<button className="btn btn-primary btn-lg">Submit</button>
+			    		</div>
 
-    		<div className="form-group">
-    		<button onClick={this.onClick}>View Record</button>
-    		</div>
+			    		
 
-    		<div className="form-group">
-    		<button onClick={this.handleClick}>View all Records</button>
-    		</div>
+			    		<div className="form-group">
+			    		<button className="btn btn-primary btn-lg" onClick={this.handleClick}>View all Records</button>
+			    		</div>
 
     			 {this.props.student.map(this.studentRow)}
 

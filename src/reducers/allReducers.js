@@ -8,6 +8,5 @@ const allReducers=combineReducers({
 export default allReducers;
 
 export const getStudents = (state) => {
-	console.log(state.students);
 	return allStudents.getStudents(state);
 }
