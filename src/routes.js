@@ -8,6 +8,7 @@ import viewAllRecords from './component/student/viewAllRecords';
 
 
 
+
 export default(
 				<Route Path="/" component={App}>
 				<IndexRoute component={App}/>

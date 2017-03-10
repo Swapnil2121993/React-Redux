@@ -102,13 +102,13 @@ class StudentPage extends Component{
     			</div>		
 	
 			    		<div className="form-group">
-			    		<button className="btn btn-primary btn-lg">Submit</button>
+			    		<button className="btn btn-primary btn-sm">Submit</button>
 			    		</div>
 
 			    		
 
 			    		<div className="form-group">
-			    		<button className="btn btn-primary btn-lg" onClick={this.handleClick}>View all Records</button>
+			    		<button className="btn btn-primary btn-sm" onClick={this.handleClick}>View all Records</button>
 			    		</div>
 
     			 {this.props.student.map(this.studentRow)}

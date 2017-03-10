@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import { getStudents } from '../../../src/reducers/allReducers';
+import Modal from './Modal';
 import filter from 'lodash/filter';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
@@ -28,6 +29,8 @@ import {table} from 'react-bootstrap';
  		e.preventDefault();
  		browserHistory.push("student");
  	}
+
+ 
 
  	handleChange(e){
  		this.setState({[e.target.name]:e.target.value});
@@ -61,7 +64,7 @@ import {table} from 'react-bootstrap';
  	render() {
 
  		const {
- 			students,
+ 			students
  		} = this.props;
 
  		const {
@@ -82,11 +85,11 @@ import {table} from 'react-bootstrap';
 		 					name="filterText"
 		 					value={this.state.filterText} 
 		 					onChange={this.handleChange.bind(this)}/>
-		 				
+		 			
 		 				<button onClick={this.onClickFilter.bind(this)}>
 		 				 FilterByCourse
 		 				</button>
-		 			</div>
+		 		</div>
 		 			<table className="table table-hove">
 	 					<th>student Id</th>
 	 					<th>FirstName</th>
@@ -108,75 +111,16 @@ import {table} from 'react-bootstrap';
  					</tbody>
 			 		</table>
 			 			<div className="form-group">
-	    				<button className="btn btn-primary btn-lg" 
-	    				onClick={this.onClick.bind(this)}
-	    				data-target="#addModal" data-toggle="modal">Add new Record</button>
-	    				</div>
-	    				
-	    			<div className="modal" id="addModal" tableIndex="-1">
-					    	<div className="modal-dialog">
-					    			<div className="modal-content">
-		    				
-		    				<div className="modal-header">
-		    				    <button className="close" data-dismiss="modal">&times;</button>
-		    				      <h4 className="modal-title">Student Online Portal</h4>
-		    				</div>
+	    				<button className="btn btn-primary btn-sm" 
+	    				 onClick={this.onClick.bind(this)}>Add New record </button>
+	    				 </div>
+	    				 
+	    				 <Modal/>
 
-		    	<div className="modal-body">
-
-					    <form>
-							<div className="form-group">
-								<label className="control-label">Student Id </label>
-								<input type="text" 
-								name="studentId" 
-								className="form-control" 
-								onChange={this.onChange} 
-								value={this.state.studentId}/>
-							</div>
-
-				<div className="form-group">
-					<label className="control-label">First Name </label>
-					<input type="text" 
-					name="firstName" 
-					className="form-control" 
-					value={this.state.firstName} 
-					onChange={this.onChange}/>
-				</div>
-
-				<div className="form-group">
-					<label className="control-label">Last Name </label>
-						<input type="text" 
-						name="lastName" 
-						className="form-control" 
-						value={this.state.lastName}
-						onChange={this.onChange}/>
-				</div>
-
-				<div className="form-group">
-						<label className="control-label">Courses</label>
-							<select className="form-control"name="courses" onChange={this.onChange}value={this.state.courses} >
-		      					<option value="Algorithm Concept">Algorithm Concept</option>
-		      					<option value="Java Networking">Java Networking</option>
-		      					<option value="Distributed System">Distributed System</option>
-		      					<option value="Artificial Intelligence">Artificial Intelligence</option>
-		      					<option value="Operating System Security">Operating System Security</option>
-		    				</select>	
-
-    			</div>		
-	
-			    		<div className="form-group">
-			    		<button className="btn btn-primary btn-lg">Submit</button>
-			    		</div>
-
-	    				</form>
-	    					
-						    		</div>
-							    		</div>
-											</div>
-												</div>
-													</div>
-
-		 	 );
+	    				 </div>
+	    			
+	    		
+	    			);
 	}
  }
 

@@ -22,7 +22,6 @@ export default function students(state=[], action){
 }
 
 export const getStudents=(state)=>{    //selector
-	console.log(state);
 	return state.students;
 }
 
