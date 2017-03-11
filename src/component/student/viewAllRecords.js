@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { getStudents } from '../../../src/reducers/allReducers';
-import Modal from './Modal';
+import StudentModal from './StudentModal';
 import filter from 'lodash/filter';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
@@ -110,17 +110,17 @@ import {table} from 'react-bootstrap';
 
  					</tbody>
 			 		</table>
+			 			
 			 			<div className="form-group">
 	    				<button className="btn btn-primary btn-sm" 
 	    				 onClick={this.onClick.bind(this)}>Add New record </button>
 	    				 </div>
-	    				 
-	    				 <Modal/>
 
-	    				 </div>
+
+	    		 </div>
 	    			
 	    		
-	    			);
+	   );
 	}
  }
 
