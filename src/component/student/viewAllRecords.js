@@ -1,9 +1,10 @@
 import React,{Component} from 'react';
 import { getStudents } from '../../../src/reducers/allReducers';
-import StudentModal from './StudentModal';
+import Form from './Form';
 import filter from 'lodash/filter';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
+import {Modal} from 'react-bootstrap';
 import {table} from 'react-bootstrap';
 
 
@@ -13,6 +14,7 @@ import {table} from 'react-bootstrap';
 		this.state={
 			filterText:'',
 			filteredRecords: [],
+			open:"true"
 		};
 		
 	}
@@ -27,14 +29,24 @@ import {table} from 'react-bootstrap';
 
  	onClick(e){
  		e.preventDefault();
- 		browserHistory.push("student");
+ 		this.setState({open:"true"});
+ 		// browserHistory.push("student");
  	}
 
  
 
  	handleChange(e){
  		this.setState({[e.target.name]:e.target.value});
- 	}	
+ 	}
+
+ 	close(){
+        this.setState({open:false});
+    }
+
+    show(){
+    	this.setState({open:true});
+    }
+ 	
 
  	studentInfo(student){
  		if (student) {
@@ -113,11 +125,36 @@ import {table} from 'react-bootstrap';
 			 			
 			 			<div className="form-group">
 	    				<button className="btn btn-primary btn-sm" 
-	    				 onClick={this.onClick.bind(this)}>Add New record </button>
+	    				 onClick={this.show.bind(this)}>Add New record </button>
 	    				 </div>
 
+	    				<div>
+	    				<Modal
+			    		show={this.state.open}
+			    		onHide={this.close}
+			    		aria-labelledby="ModalHeader"
+			    		>
 
-	    		 </div>
+			    		<Modal.Header>
+			    		<Modal.Title id="ModalHeader">Student Online Portal</Modal.Title>
+			    		</Modal.Header>
+			    		
+			    		<Modal.Body>
+				    	<Form/>
+				    	</Modal.Body>
+
+			    		
+			    		<Modal.Footer>
+			    		<button onClick={this.close.bind(this)}>
+			             Close
+			            </button>
+			    		</Modal.Footer>
+
+			    		</Modal>
+			    		</div>
+	    				
+			    		</div>
+
 	    			
 	    		
 	   );
@@ -126,7 +163,7 @@ import {table} from 'react-bootstrap';
 
  function mapStateToProps(state,props){
    return{
-   		students:getStudents(state)
+   		students:getStudents(state),
    };
  
  }

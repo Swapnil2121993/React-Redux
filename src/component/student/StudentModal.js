@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
-import Modal from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
+import * as studentAction from '../../actions/studentAction';
+
 
 export default class StudentModal extends React.Component {
 	constructor(props){
@@ -9,24 +11,25 @@ export default class StudentModal extends React.Component {
 		};
 	}
 
-	handleClick(e){
-		e.preventDefault();
-        this.setState({open:"true"});
+    onSubmit(e) {
+        e.preventDefault();
+        this.props.dispatch(studentAction.sendData(this.state));
+    }
+	
 
-}
+    close(){
+        this.setState({open:false});
+    }
  
   render(){
 
-  	let closeModal=()=>this.setState({open:"false"})
-  
-    
     return (
-    		<div>
-    		<button className="btn-btn-primary-btn-sm" onClick={this.handleClick.bind(this)}>model</button>
-
-    		<Modal
+            
+            <div>
+        
+            <Modal
     		show={this.state.open}
-    		onHide={closeModal}
+    		onHide={this.close}
     		aria-labelledby="ModalHeader"
     		>
 
@@ -39,7 +42,9 @@ export default class StudentModal extends React.Component {
     		</Modal.Body>
 
     		<Modal.Footer>
-    		<Modal.Dismiss className="btn-btn-default">Cancel</Modal.Dismiss>
+    		<button onClick={this.close.bind(this)}>
+             Close
+            </button>
     		</Modal.Footer>
 
     		</Modal>
@@ -48,6 +53,11 @@ export default class StudentModal extends React.Component {
     		);
     	}
     }
+
+function mapStateToProps(state,props){
+    return {
+        student:state.student
+    };
+}
      
 
-   
