@@ -1,63 +1,61 @@
-import React,{Component} from 'react';
-import {Modal} from 'react-bootstrap';
-import * as studentAction from '../../actions/studentAction';
+/*thinking to build modal as seperate component*/
+
+// import React,{Component} from 'react';
+// import {Modal} from 'react-bootstrap';
 
 
-export default class StudentModal extends React.Component {
-	constructor(props){
-		super(props);
-		this.state={
-			open:"true"
-		};
-	}
+// export default class StudentModal extends React.Component {
+// 	constructor(props){
+// 		super(props);
+// 		this.state={
+// 			open:"true"
+// 		};
+// 	}
 
-    onSubmit(e) {
-        e.preventDefault();
-        this.props.dispatch(studentAction.sendData(this.state));
-    }
+   
 	
 
-    close(){
-        this.setState({open:false});
-    }
+//     close(){
+//         this.setState({open:false});
+//     }
  
-  render(){
+//   render(){
 
-    return (
+//     return (
             
-            <div>
+//             <div>
         
-            <Modal
-    		show={this.state.open}
-    		onHide={this.close}
-    		aria-labelledby="ModalHeader"
-    		>
+//             <Modal
+//     		show={this.state.open}
+//     		onHide={this.close}
+//     		aria-labelledby="ModalHeader"
+//     		>
 
-    		<Modal.Header>
-    		<Modal.Title id="ModalHeader">Student Online Portal</Modal.Title>
-    		</Modal.Header>
+//     		<Modal.Header>
+//     		<Modal.Title id="ModalHeader">Student Online Portal</Modal.Title>
+//     		</Modal.Header>
 
-    		<Modal.Body>
-    		<p>Hello</p>
-    		</Modal.Body>
+//     		<Modal.Body>
+//     		<p>Hello</p>
+//     		</Modal.Body>
 
-    		<Modal.Footer>
-    		<button onClick={this.close.bind(this)}>
-             Close
-            </button>
-    		</Modal.Footer>
+//     		<Modal.Footer>
+//     		<button onClick={this.close.bind(this)}>
+//              Close
+//             </button>
+//     		</Modal.Footer>
 
-    		</Modal>
-    		</div>
+//     		</Modal>
+//     		</div>
 
-    		);
-    	}
-    }
+//     		);
+//     	}
+//     }
 
-function mapStateToProps(state,props){
-    return {
-        student:state.student
-    };
-}
+// function mapStateToProps(state,props){
+//     return {
+//         student:state.student
+//     };
+// }
      
 

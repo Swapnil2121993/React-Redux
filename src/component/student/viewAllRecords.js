@@ -14,9 +14,9 @@ import {table} from 'react-bootstrap';
 		this.state={
 			filterText:'',
 			filteredRecords: [],
-			open:"true"
+			open:false
 		};
-		
+
 	}
 
  	static propTypes = {
@@ -29,11 +29,11 @@ import {table} from 'react-bootstrap';
 
  	onClick(e){
  		e.preventDefault();
- 		this.setState({open:"true"});
+ 		this.setState({open:true});
  		// browserHistory.push("student");
  	}
 
- 
+
 
  	handleChange(e){
  		this.setState({[e.target.name]:e.target.value});
@@ -46,7 +46,7 @@ import {table} from 'react-bootstrap';
     show(){
     	this.setState({open:true});
     }
- 	
+
 
  	studentInfo(student){
  		if (student) {
@@ -70,7 +70,7 @@ import {table} from 'react-bootstrap';
  			return student.courses === filterText ?student : '';
  		});
  		this.setState({filteredRecords});
- 		
+
  	}
 
  	render() {
@@ -92,12 +92,12 @@ import {table} from 'react-bootstrap';
 		return (
 		 		<div>
 		 			<div>
-		 				<input 
-		 					type="text" 
+		 				<input
+		 					type="text"
 		 					name="filterText"
-		 					value={this.state.filterText} 
+		 					value={this.state.filterText}
 		 					onChange={this.handleChange.bind(this)}/>
-		 			
+
 		 				<button onClick={this.onClickFilter.bind(this)}>
 		 				 FilterByCourse
 		 				</button>
@@ -108,7 +108,7 @@ import {table} from 'react-bootstrap';
 	 					<th>LastName</th>
 	 					<th>Courses</th>
 			 			<tbody>
- 							
+
  							{records.map((record) => {
  								return (
 	 								<tr>
@@ -122,9 +122,9 @@ import {table} from 'react-bootstrap';
 
  					</tbody>
 			 		</table>
-			 			
+
 			 			<div className="form-group">
-	    				<button className="btn btn-primary btn-sm" 
+	    				<button className="btn btn-primary btn-sm"
 	    				 onClick={this.show.bind(this)}>Add New record </button>
 	    				 </div>
 
@@ -138,12 +138,12 @@ import {table} from 'react-bootstrap';
 			    		<Modal.Header>
 			    		<Modal.Title id="ModalHeader">Student Online Portal</Modal.Title>
 			    		</Modal.Header>
-			    		
+
 			    		<Modal.Body>
 				    	<Form/>
 				    	</Modal.Body>
 
-			    		
+
 			    		<Modal.Footer>
 			    		<button onClick={this.close.bind(this)}>
 			             Close
@@ -152,11 +152,11 @@ import {table} from 'react-bootstrap';
 
 			    		</Modal>
 			    		</div>
-	    				
+
 			    		</div>
 
-	    			
-	    		
+
+
 	   );
 	}
  }
@@ -165,9 +165,7 @@ import {table} from 'react-bootstrap';
    return{
    		students:getStudents(state),
    };
- 
+
  }
 
  export default connect(mapStateToProps)(viewAllRecords);
-
-
